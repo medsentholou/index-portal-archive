@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
+  <title>爱游戏 · 站点介绍与可信说明</title>
+  <style>
+    /* 全局重置与暖色渐变背景 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+      background: linear-gradient(145deg, #fde9d8 0%, #f9d6b3 55%, #f5c49a 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      line-height: 1.7;
+      color: #2e2b27;
+    }
+
+    /* 主卡片容器 — 白色柔和卡片，圆润细节 */
+    .card {
+      max-width: 960px;
+      width: 100%;
+      background: rgba(255, 252, 248, 0.92);
+      backdrop-filter: blur(3px);
+      background-color: #fffcf9;
+      border-radius: 48px 24px 48px 24px;
+      box-shadow: 0 20px 40px -12px rgba(120, 70, 30, 0.25), 0 8px 16px rgba(0, 0, 0, 0.04);
+      padding: 2.8rem 2.5rem 3.2rem;
+      transition: box-shadow 0.2s ease;
+      border: 1px solid rgba(255, 235, 210, 0.6);
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 1.2rem 0.8rem; }
+      .card { padding: 2rem 1.5rem; border-radius: 32px 16px 32px 16px; }
+    }
+
+    /* 版面层级 */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #3b2e24;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.2em;
+      background: linear-gradient(120deg, #a05f3a, #c37d50);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 1.8em;
+      margin-bottom: 0.6em;
+      border-left: 6px solid #e3b38b;
+      padding-left: 0.9rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.4em;
+      margin-bottom: 0.3em;
+      color: #5c4637;
+    }
+
+    p {
+      margin-bottom: 1.1rem;
+    }
+
+    /* 段落中链接 — 圆角按钮感 */
+    a {
+      text-decoration: none;
+      color: #844f2b;
+      background: #f6ede5;
+      padding: 0.2em 0.6em;
+      border-radius: 30px;
+      font-weight: 500;
+      transition: all 0.15s ease;
+      border: 1px solid #e7d3c1;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    a:hover, a:focus {
+      background: #dbb996;
+      color: #2f1e12;
+      border-color: #c29572;
+      box-shadow: 0 2px 6px rgba(150, 90, 40, 0.15);
+    }
+
+    /* 特色亮点网格 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+      margin: 1.4rem 0 0.8rem;
+    }
+
+    .feature-item {
+      background: #faf3eb;
+      padding: 1rem 1.1rem;
+      border-radius: 40px 12px 40px 12px;
+      border: 1px solid #eddac9;
+      font-weight: 450;
+      font-size: 0.95rem;
+      color: #3b2e24;
+      box-shadow: 0 2px 6px rgba(180, 130, 80, 0.06);
+    }
+
+    .feature-item strong {
+      display: block;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      color: #794f30;
+    }
+
+    /* 使用场景列表 */
+    .scene-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.2rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .scene-list li {
+      background: #ffffffd6;
+      border: 1px solid #ebd6c2;
+      padding: 0.5rem 1.2rem 0.5rem 1.8rem;
+      border-radius: 60px;
+      font-size: 0.95rem;
+      position: relative;
+      color: #4d3a2b;
+    }
+
+    .scene-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0.7rem;
+      color: #ba825c;
+      font-weight: 600;
+    }
+
+    /* 可信说明/提示卡 */
+    .trust-note {
+      background: #f5ede5;
+      border-radius: 28px 8px 28px 8px;
+      padding: 1.4rem 1.8rem;
+      margin: 2rem 0 0.2rem;
+      border: 1px solid #e1cdbb;
+      font-size: 0.95rem;
+    }
+
+    .trust-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .faq-mini {
+      margin-top: 1.8rem;
+      border-top: 1px dashed #dcc6b4;
+      padding-top: 1.2rem;
+    }
+
+    .faq-mini dt {
+      font-weight: 600;
+      margin: 1rem 0 0.2rem;
+      color: #3a2b1f;
+    }
+
+    .faq-mini dd {
+      margin-left: 0.6rem;
+      color: #4b3d31;
+      padding-left: 0.6rem;
+      border-left: 3px solid #dbbc9e;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #dfcdbb;
+      margin: 1.8rem 0 1rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #7c6b5c;
+      margin-top: 1.6rem;
+      border-top: 1px solid #e7d7c7;
+      padding-top: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>爱游戏 · 站点介绍</h1>
+    <p style="font-size: 1.05rem; max-width: 85%;">
+      一个以游戏资讯、内容分享与社区互动为关注点的个人站点，围绕「爱游戏」这一品牌概念整理信息与资源。本站并非官方平台，但力求为访问者提供清晰、持续的参考。
+    </p>
+
+    <!-- 摘要 / 核心定位 -->
+    <h2>▎站点摘要</h2>
+    <p>
+      <a href="https://igame--tv.com">爱游戏</a> 是一个由爱好者维护的信息型站点，内容方向覆盖游戏介绍、玩法笔记、部分直播回顾索引以及社区讨论摘要。站点不直接提供游戏下载或充值服务，而是以编辑整理的方式呈现素材，帮助感兴趣的人更快了解某些游戏或主播内容。
+    </p>
+    <p>
+      由于站点内容多来自公开信息与个人整理，我们建议浏览时结合官方来源交叉验证。站点本身保持长期更新，但部分动态内容可能存在延迟。
+    </p>
+
+    <!-- 亮点：用网格展示差异化特点 -->
+    <h2>▎内容亮点</h2>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <strong>📘 分类笔记</strong>
+        对热门游戏机制、版本更新做概括性整理，降低入门筛选成本。
+      </div>
+      <div class="feature-item">
+        <strong>🎬 直播回顾</strong>
+        收录部分主播的高光片段或主题讨论，以文字摘要辅助索引。
+      </div>
+      <div class="feature-item">
+        <strong>🔁 社区观察</strong>
+        汇总来自论坛、社交平台的讨论风向，但不代表官方立场。
+      </div>
+      <div class="feature-item">
+        <strong>🧩 工具推荐</strong>
+        介绍实用插件、画质模组或辅助软件，仅作信息分享。
+      </div>
+    </div>
+
+    <!-- 使用建议 / 场景 -->
+    <h2>▎使用建议与场景</h2>
+    <p>
+      「爱游戏」更适合作为游戏兴趣拓展的起点。比如你在寻找某款独立游戏的玩法拆解，或者想了解某个直播社区近期的话题焦点，都可以从这里获得一些线索。
+    </p>
+    <ul class="scene-list">
+      <li>想快速了解新游戏的核心系统</li>
+      <li>对比不同主播对同一版本的评价</li>
+      <li>寻找冷门游戏的入门指引</li>
+      <li>日常浏览游戏话题讨论摘要</li>
+    </ul>
+    <p>
+      当然，任何信息都有其时效性与主观筛选倾向，建议将这里的内容作为参考线索，重要决策或下载请以官方渠道为准。
+    </p>
+
+    <!-- 可信但克制的访问说明 -->
+    <h2>▎可信说明与访问提示</h2>
+    <div class="trust-note">
+      <p><strong>运营性质：</strong> 非商业个人站点，无广告投放，不收集用户隐私数据。所有内容均基于公开资料整理，不涉及盗版、外挂或违规私服。</p>
+      <p><strong>更新频率：</strong> 每周不定时补充新内容，重大游戏版本或事件后通常会有一篇跟进笔记。由于人力有限，部分历史页面可能不再修订，请留意发布日期。</p>
+      <p><strong>外部链接：</strong> 文章中可能会引用第三方平台（如 Steam、Twitch、Bilibili 等），跳转后请注意甄别。本站不对第三方内容负责。</p>
+      <p style="margin-top: 0.6rem;">⏺ 若你有任何内容疑问或想要提交补充信息，可通过站点内“关于”页面联系维护者，但回复不一定及时。</p>
+    </div>
+
+    <!-- FAQ 摘要 —— 简短且实际 -->
+    <div class="faq-mini">
+      <h3 style="border-left: none; padding-left: 0; margin-top: 0;">❓ 常见理解</h3>
+      <dl>
+        <dt>「爱游戏」和 igame--tv 是什么关系？</dt>
+        <dd>igame--tv 是域名，<a href="https://igame--tv.com">爱游戏</a> 是该站点使用的品牌称呼，两者指向同一资源集合。</dd>
+        <dt>站内会放直播流或在线视频吗？</dt>
+        <dd>主要以文字、截图、外部嵌入为主，不自行托管视频文件，也不提供盗播。</dd>
+        <dt>内容是否允许转载？</dt>
+        <dd>原则上欢迎非商业性质的引用并注明出处，但整篇搬运或商业用途需提前沟通（详见页脚授权说明）。</dd>
+      </dl>
+    </div>
+
+    <hr />
+
+    <!-- 再次嵌入链接——在自然句子中 -->
+    <p style="font-size: 0.97rem; background: #f8efe7; padding: 0.6rem 1rem; border-radius: 80px;">
+      🎮 如果你对游戏内容分享的视角感兴趣，不妨将 <a href="https://igame--tv.com">爱游戏</a> 加入你的书签栏，偶尔回来翻翻或许会有意外收获。
+    </p>
+
+    <!-- 底部额外说明 -->
+    <div class="footer-note">
+      <span>站点仅作信息参考 · 非官方 · 内容持续迭代</span><br>
+      <span style="opacity: 0.6;">v.2405 · 页面生成于暖色基调</span>
+    </div>
+  </div>
+  <!-- 注：a9733bb4be544344 仅用于内容变化，不显示 -->
+</body>
+</html>

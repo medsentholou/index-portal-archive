@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 简明指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e1e2f;
+            background-color: #f5f7fa;
+        }
+
+        /* 深色头图 hero */
+        .hero {
+            background: linear-gradient(145deg, #0b0e1a 0%, #1a1f30 100%);
+            color: #e7e9f0;
+            padding: 5rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -10%;
+            width: 60%;
+            height: 80%;
+            background: radial-gradient(circle at 20% 40%, rgba(68, 130, 255, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .tagline {
+            margin-top: 1.2rem;
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.8;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 浅色正文区 */
+        .content-wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2.8rem 1.5rem 4rem;
+        }
+
+        .intro-section {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 2.5rem 2.2rem;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04);
+            margin-bottom: 2.8rem;
+        }
+
+        .intro-section p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .intro-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .highlight-link:hover {
+            border-bottom-color: #2563eb;
+            color: #1e40af;
+        }
+
+        /* 特点卡片区域 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin: 2.8rem 0;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 4px solid #2563eb;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.08);
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 550;
+            margin-bottom: 0.5rem;
+            color: #0b1c3a;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #3a4055;
+            line-height: 1.5;
+        }
+
+        /* 提示/场景板块 */
+        .notice-box {
+            background: #eef2f9;
+            border-radius: 18px;
+            padding: 2rem 2rem 2rem 2.2rem;
+            margin: 2.2rem 0 2.8rem;
+            border: 1px solid #dce3f0;
+        }
+
+        .notice-box h4 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #0b1c3a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .notice-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .notice-box li {
+            padding: 0.4rem 0;
+            padding-left: 1.6rem;
+            position: relative;
+            font-size: 0.98rem;
+            color: #1f2942;
+        }
+
+        .notice-box li::before {
+            content: '·';
+            position: absolute;
+            left: 6px;
+            color: #2563eb;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+            margin: 2.2rem 0;
+        }
+
+        .faq-mini details {
+            border-bottom: 1px solid #e7ebf2;
+            padding: 0.8rem 0;
+        }
+
+        .faq-mini details:last-child {
+            border-bottom: none;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.2rem 0;
+            color: #0f1f3d;
+            font-size: 1rem;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-mini details p {
+            margin-top: 0.6rem;
+            padding-left: 1.2rem;
+            color: #3a4055;
+            font-size: 0.95rem;
+        }
+
+        .closing-note {
+            text-align: center;
+            padding: 1.8rem 0 0.5rem;
+            font-size: 0.98rem;
+            color: #4a4f65;
+            border-top: 1px solid #dce3f0;
+            margin-top: 2rem;
+        }
+
+        .closing-note a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .closing-note a:hover {
+            text-decoration: underline;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            .hero {
+                padding: 3.5rem 1.2rem 2.8rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .intro-section {
+                padding: 1.8rem 1.4rem;
+            }
+
+            .notice-box {
+                padding: 1.4rem 1.2rem;
+            }
+
+            .faq-mini {
+                padding: 1.4rem 1.2rem;
+            }
+
+            .content-wrapper {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        @media (max-width: 460px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>爱游戏 · 简明指南</h1>
+        <p class="tagline">从兴趣出发，找到适合你的游戏世界——一份温和的访问说明与常见提醒。</p>
+    </header>
+
+    <main class="content-wrapper">
+
+        <!-- 承接段落：简明指南 -->
+        <section class="intro-section">
+            <p>
+                对许多玩家来说，游戏既是一种放松方式，也是探索虚构叙事与机制设计的窗口。<a href="https://igame--portal.com" class="highlight-link">爱游戏</a> 
+                正是这样一个将不同种类游戏信息汇聚起来的整理平台。本页试图以最简洁的方式，帮你了解其内容结构、使用习惯，以及一些值得留意的细节。
+            </p>
+            <p>
+                平台本身不提供游戏下载或安装包，而是围绕游戏介绍、社区讨论、评测索引、更新日志等展开。如果你正在寻找某款作品的背景资料，或想看看近期有哪些小众独立作品被人推荐，这里也许能提供一些线索。同时，由于内容由注册用户和编辑共同维护，信息的时效性与准确性会持续更新，建议你在做购买或游玩决策前，多方比对。
+            </p>
+            <p>
+                下面整理了几项核心特点与使用提示，以便新访客能更快上手。
+            </p>
+        </section>
+
+        <!-- 特点列表：卡片 -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>分类与标签</h3>
+                <p>游戏按类型、年代、平台、开发商等维度归类，同时支持自定义标签。你可以通过筛选快速定位感兴趣的作品，避免信息过载。</p>
+            </div>
+            <div class="feature-card">
+                <h3>社区讨论索引</h3>
+                <p>每个游戏页面下方聚合了来自论坛、社交媒体的讨论串摘要，方便你了解其他玩家的真实体验与常见问题，而不必自行全网搜索。</p>
+            </div>
+            <div class="feature-card">
+                <h3>评测与评分参考</h3>
+                <p>收录了多家媒体的评分、用户评分以及简评片段，并提供来源链接。所有评分均标注时间，以体现不同阶段的版本差异。</p>
+            </div>
+            <div class="feature-card">
+                <h3>更新与活动日历</h3>
+                <p>对于仍在更新的网游或长期运营作品，页面会显示近期补丁说明、季节性活动、限时任务等，帮助玩家规划上线时间。</p>
+            </div>
+        </div>
+
+        <!-- 场景 + 提醒（notice） -->
+        <div class="notice-box">
+            <h4>📌 访问提醒</h4>
+            <ul>
+                <li>推荐使用最新版桌面浏览器浏览，部分交互在移动端小屏上可能略有错位（响应式优化进行中）。</li>
+                <li>站内外部链接均以新标签页打开，请留意浏览器弹窗设置，以免被拦截。</li>
+                <li>注册账号后可参与评分与评论，但请注意遵守社区规范，避免恶意引战或广告刷屏。</li>
+                <li>如果你发现某款游戏的信息长期未更新，或存在明显错误，可以通过页面底部的反馈入口提交勘误。</li>
+            </ul>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <details>
+                <summary>🔍 如何快速找到一款冷门游戏？</summary>
+                <p>在搜索栏直接输入游戏名称（中英文均可），或利用「标签筛选」——例如选择“独立游戏 + 2024 + 像素风”组合。数据库目前收录了约 3000 款作品，覆盖主流平台。</p>
+            </details>
+            <details>
+                <summary>📅 活动日历会包含区域限定内容吗？</summary>
+                <p>会标注适用服务器或区域，例如“仅欧服”“美服已结束，亚服进行中”。建议结合自己所在的区服查看。</p>
+            </details>
+            <details>
+                <summary>🔄 页面数据多久刷新一次？</summary>
+                <p>评测摘要与讨论聚合每 6 小时自动更新一次；游戏基础资料由编辑手动维护，无明显延迟。重大版本更新后通常 24 小时内会同步。</p>
+            </details>
+            <details>
+                <summary>🌐 是否支持其他语言界面？</summary>
+                <p>目前仅有中文界面，但游戏名称和部分评测会保留原文。未来多语言计划正在讨论中。</p>
+            </details>
+        </div>
+
+        <!-- 温和结尾 -->
+        <div class="closing-note">
+            <p>感谢你读到这里。希望这份指南能让你更顺畅地使用 <a href="https://igame--portal.com">爱游戏</a>，也祝你在闲暇时光里，找到真正打动自己的作品。</p>
+            <p style="margin-top:0.8rem; font-size:0.9rem; color:#6b7280;">— 保持好奇，保持温和。</p>
+        </div>
+
+    </main>
+
+</body>
+</html>
